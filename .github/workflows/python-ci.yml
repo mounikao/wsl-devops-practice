@@ -1,0 +1,22 @@
+name: Python CI/CD
+
+on: [push, pull_request]  # Runs on every push & PR
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use Ubuntu runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.8"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt || echo "No requirements file"
+
+      - name: Run Python Script
+        run: python hello.py  # Runs your script
